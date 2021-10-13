@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true">
+  <ion-slides
+    pager="true"
+    [options]="slideOpts"
+    (ionSlideReachEnd)="btnDisabled = false"
+    class="slides-container"
+  >
+    <ion-slide *ngFor="let slide of slidesContent">
+      <ion-icon name="close" (click)="closeSlides()"></ion-icon>
+
+      <picture class="slide--feature-image">
+        <source media="(min-width:650px)" [srcset]="slide.imgURL2x" />
+        <img [src]="slide.imgURL1x" [alt]="slide.title" />
+      </picture>
+
+      <h1>{{slide.title}}</h1>
+      <h2>{{slide.subtitle}}</h2>
+      <p>{{slide.description}}</p>
+
+      <ion-button [disabled]="btnDisabled" (click)="closeSlides()"
+        >Home</ion-button
+      >
+    </ion-slide>
+  </ion-slides>
+</ion-content>

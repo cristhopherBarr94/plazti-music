@@ -1,0 +1,138 @@
+ion-button {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  height: 35px;
+  --background: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+ion-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 50px 20px;
+  color: var(--ion-color-primary-contrast);
+
+  .slide--feature-image img {
+    width: 100%;
+    height: 100%;
+    max-width: 65vw;
+    max-height: 66vh;
+    object-fit: contain;
+  }
+
+  .slide--feature-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--ion-color-danger);
+  }
+
+  & > ion-icon[name="close"] {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    color: var(--ion-color-primary-contrast);
+  }
+  h1 {
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+  }
+  h2 {
+    font-family: "Kanit", sans-serif;
+    font-size: 2.8rem;
+    line-height: 3rem;
+  }
+}
+
+.slides-container {
+  height: 100%;
+  max-width: 800px;
+
+  ion-slide:nth-of-type(1) {
+    background: rgb(255, 4, 44);
+    background: -moz-radial-gradient(
+      circle,
+      rgba(255, 4, 44, 1) 50%,
+      rgba(168, 6, 6, 1) 80%
+    );
+    background: -webkit-radial-gradient(
+      circle,
+      rgba(255, 4, 44, 1) 50%,
+      rgba(168, 6, 6, 1) 80%
+    );
+    background: radial-gradient(
+      circle,
+      rgba(255, 4, 44, 1) 50%,
+      rgba(168, 6, 6, 1) 80%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff042c",endColorstr="#a80606",GradientType=1);
+  }
+  ion-slide:nth-of-type(2) {
+    background: rgb(226, 25, 141);
+    background: -moz-radial-gradient(
+      circle,
+      rgba(226, 25, 141, 1) 50%,
+      rgba(102, 2, 55, 1) 88%
+    );
+    background: -webkit-radial-gradient(
+      circle,
+      rgba(226, 25, 141, 1) 50%,
+      rgba(102, 2, 55, 1) 88%
+    );
+    background: radial-gradient(
+      circle,
+      rgba(226, 25, 141, 1) 50%,
+      rgba(102, 2, 55, 1) 88%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e2198d",endColorstr="#660237",GradientType=1);
+  }
+  ion-slide:nth-of-type(3) {
+    background: rgb(2, 161, 179);
+    background: -moz-radial-gradient(
+      circle,
+      rgba(2, 161, 179, 1) 50%,
+      rgba(0, 128, 176, 1) 80%
+    );
+    background: -webkit-radial-gradient(
+      circle,
+      rgba(2, 161, 179, 1) 50%,
+      rgba(0, 128, 176, 1) 80%
+    );
+    background: radial-gradient(
+      circle,
+      rgba(2, 161, 179, 1) 50%,
+      rgba(0, 128, 176, 1) 80%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#02a1b3",endColorstr="#0080b0",GradientType=1);
+
+    ion-button {
+      animation-name: beat;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+:host ::ng-deep .swiper-pagination-bullet-active {
+  background: #fff !important;
+}
+
+:host ::ng-deep.swiper-pagination-bullet {
+  background: #fff;
+}
