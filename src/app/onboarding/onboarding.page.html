@@ -8,16 +8,14 @@
     <ion-slide *ngFor="let slide of slidesContent">
       <ion-icon name="close" (click)="closeSlides()"></ion-icon>
 
-      <!-- <picture class="slide--feature-image">
+      <picture class="slide--feature-image">
         <source
           media="(min-width:650px)"
           [srcset]="slide.imgURL2x"
           appBrokenLink
         />
         <img [src]="slide.imgURL1x" appBrokenLink [alt]="slide.title" />
-      </picture> -->
-
-      <img [src]="slide.imgURL2x" appBrokenLink [alt]="slide.title" />
+      </picture>
 
       <h1>{{slide.title}}</h1>
       <h2>{{slide.subtitle}}</h2>

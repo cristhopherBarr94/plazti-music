@@ -1,0 +1,41 @@
+.login-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  --background: rgba(0, 0, 0, 0.8);
+  --color: #fff;
+
+  img {
+    width: 80px;
+    height: 30px;
+  }
+  h1 {
+    font-family: "Kanit", sans-serif;
+    font-size: 2.8rem;
+    line-height: 3rem;
+    text-align: center;
+  }
+  p {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    text-align: center;
+  }
+}
+
+.container-hz {
+  position: absolute;
+  bottom: 0;
+  justify-content: space-between;
+  padding: 10px;
+
+  a {
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    text-decoration: none;
+  }
+
+  ion-button {
+    --background: rgba(80, 2, 91, 1);
+  }
+}

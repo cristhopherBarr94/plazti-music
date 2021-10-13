@@ -1,0 +1,26 @@
+.form {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  & > ion-item {
+    margin-bottom: 15px;
+    --color: #fff;
+    --background: rgba(255, 255, 255, 0.2);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+  }
+
+  & > ion-label {
+    --color: #fff;
+  }
+
+  & > small {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    color: var(--ion-color-danger-shade);
+    transition: all 0.2s;
+  }
+}
