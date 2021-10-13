@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { OnboardingGuard } from './guards/onboarding.guard';
+import { OnboardingGuard } from './utils/guards/onboarding.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'onboarding',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
     canActivate: [OnboardingGuard],
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
 ];
 

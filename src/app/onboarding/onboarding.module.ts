@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { OnboardingPageRoutingModule } from './onboarding-routing.module';
 
 import { OnboardingPage } from './onboarding.page';
+import { UtilsModule } from '../utils/utils.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { OnboardingPage } from './onboarding.page';
     IonicModule,
     OnboardingPageRoutingModule,
     RouterModule,
+    UtilsModule,
   ],
   declarations: [OnboardingPage],
 })
