@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AuthenticationService } from '../utils/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,10 @@ export class LoginPage implements OnInit {
       'At least 8 characters in length, Lowercase letters, Uppercase letters, Numbers, Special characters',
   };
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -52,10 +55,7 @@ export class LoginPage implements OnInit {
       });
       return;
     }
-    /*TODO include authentication service */
-    console.log(this.signInForm.value);
-
-    this.router.navigate(['home']);
+    this.authService.login(this.signInForm.value);
   }
 
   public getMessageform(controlName: any): string {
