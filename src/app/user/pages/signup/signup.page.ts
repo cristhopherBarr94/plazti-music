@@ -15,7 +15,7 @@ import { AuthenticationService } from 'src/app/utils/services/authentication.ser
 })
 export class SignupPage implements OnInit {
   public signUpForm: FormGroup;
-
+  public isTermsChecked: false;
   private errorMessage: any = {
     first_name: 'At least 8 and max 50 characters in length',
     last_name: 'At least 8 and max 50 characters in length',
@@ -24,6 +24,7 @@ export class SignupPage implements OnInit {
       'At least 8 characters in length, Lowercase letters, Uppercase letters, Numbers, Special characters',
     gender: 'Select your gender',
     country: 'Select your country',
+    terms: 'Accept terms and conditions',
   };
 
   constructor(
@@ -63,17 +64,26 @@ export class SignupPage implements OnInit {
       ]),
       country: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
+      terms: new FormControl('', [
+        Validators.required,
+        Validators.requiredTrue,
+      ]),
     });
   }
 
+  accepTerms(event) {
+    this.isTermsChecked = event.target.checked;
+  }
+
   register() {
-    if (this.signUpForm.invalid) {
+    if (this.signUpForm.invalid || this.isTermsChecked === false) {
       (<any>Object).values(this.signUpForm.controls).forEach((control) => {
         control.markAsTouched();
       });
       return;
     }
-    this.authService.login(this.signUpForm.value);
+
+    this.authService.signUp(this.signUpForm.value);
   }
 
   public getMessageform(controlName: any): string {

@@ -7,7 +7,9 @@ import { Storage } from '@ionic/storage';
 })
 export class AuthenticationService {
   public isAuth: boolean = false;
-  constructor(private storage: Storage, private router: Router) {}
+  constructor(private storage: Storage, private router: Router) {
+    this.storage.create();
+  }
 
   getAuthState() {
     return this.isAuth;
@@ -18,8 +20,15 @@ export class AuthenticationService {
       credentials.email == 'crisbarsa@gmail.com' &&
       credentials.password == 'Salamanca1.'
     ) {
-      this.storage.create();
       this.storage.set('isUserLoggedIn', true);
+      this.router.navigate(['home']);
+    }
+  }
+
+  signUp(userData) {
+    if (userData) {
+      userData.password = btoa(userData.password);
+      this.storage.set('userData', userData);
       this.router.navigate(['home']);
     }
   }

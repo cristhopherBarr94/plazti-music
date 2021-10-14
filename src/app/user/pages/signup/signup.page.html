@@ -64,8 +64,8 @@
           <ion-select-option value="MX">México</ion-select-option>
         </ion-select>
       </ion-item>
-      <small [hidden]="!signUpForm.controls.gender.invalid">
-        {{ getMessageform("gender") }}
+      <small [hidden]="!signUpForm.controls.country.invalid">
+        {{ getMessageform("country") }}
       </small>
     </div>
 
@@ -99,8 +99,14 @@
     </div>
 
     <div class="container-input--item">
-      <ion-checkbox color="danger"></ion-checkbox>
+      <ion-checkbox
+        formControlName="terms"
+        color="danger"
+        (ionChange)="accepTerms($event)"
+      ></ion-checkbox>
       <ion-label>Terms & Conditions</ion-label>
+      <br />
+      <small *ngIf="!isTermsChecked"> {{ getMessageform("terms") }} </small>
     </div>
   </form>
 
