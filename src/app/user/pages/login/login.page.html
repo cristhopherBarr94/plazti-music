@@ -1,0 +1,42 @@
+<ion-content class="container">
+  <h1>Welcome!</h1>
+  <p>Log in and Be part of the new era.</p>
+  <form [formGroup]="signInForm" class="form">
+    <div class="container-input--item">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          formControlName="email"
+          autocomplete="off"
+          Type="text"
+          placeholder="jonDoe@domain.com"
+        ></ion-input>
+      </ion-item>
+      <small *ngIf="signInForm.controls.email.invalid">
+        {{ getMessageform('email') }}
+      </small>
+    </div>
+
+    <div class="container-input--item">
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          formControlName="password"
+          autocomplete="off"
+          Type="password"
+        ></ion-input>
+      </ion-item>
+      <small *ngIf="signInForm.controls.password.invalid">
+        {{ getMessageform('password') }}
+      </small>
+    </div>
+    <br /><br /><br />
+    <a routerLink="/recovery"> forgot password</a>
+  </form>
+  <div class="container-hz">
+    <a routerLink="/signup"> Sing up</a>
+    <ion-button size="small" (click)="login()" class="form--btn"
+      >Sign in</ion-button
+    >
+  </div>
+</ion-content>

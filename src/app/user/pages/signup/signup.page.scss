@@ -1,4 +1,4 @@
-.login-container {
+.container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -23,19 +23,14 @@
   }
 }
 
-.container-hz {
-  position: absolute;
-  bottom: 0;
-  justify-content: space-between;
-  padding: 10px;
+ion-toolbar {
+  --background: rgba(0, 0, 0, 0.8);
+  --border-style: none !important;
+}
 
-  a {
-    font-size: 1.6rem;
-    line-height: 1.8rem;
-    text-decoration: none;
-  }
-
-  ion-button {
-    --background: rgba(80, 2, 91, 1);
-  }
+ion-button {
+  height: 50px;
+  width: 90%;
+  margin: 30px auto;
+  --background: var(--ion-color-danger);
 }

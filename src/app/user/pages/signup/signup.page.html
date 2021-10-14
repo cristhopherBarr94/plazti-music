@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon
+      name="chevron-back-outline"
+      class="btn-control"
+      (click)="prevPage()"
+    ></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="container">
+  <h1>Lets Go!</h1>
+  <p>Be part of the best music lover comunity.</p>
+  <form [formGroup]="signUpForm" class="form">
+    <div class="container-input--item">
+      <ion-item>
+        <ion-label position="floating">Fisrt Name</ion-label>
+        <ion-input
+          formControlName="first_name"
+          autocomplete="off"
+          Type="text"
+          placeholder="jhon"
+        ></ion-input>
+      </ion-item>
+      <small *ngIf="signUpForm.controls.first_name.invalid">
+        {{ getMessageform("first_name") }}
+      </small>
+    </div>
+
+    <div class="container-input--item">
+      <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input
+          formControlName="last_name"
+          autocomplete="off"
+          Type="text"
+          placeholder="Doe"
+        ></ion-input>
+      </ion-item>
+      <small *ngIf="signUpForm.controls.last_name.invalid">
+        {{ getMessageform("last_name") }}
+      </small>
+    </div>
+
+    <div class="container-input--item">
+      <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select placeholder="Select One" formControlName="gender">
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <small [hidden]="!signUpForm.controls.gender.invalid">
+        {{ getMessageform("gender") }}
+      </small>
+    </div>
+
+    <div class="container-input--item">
+      <ion-item>
+        <ion-label>country</ion-label>
+        <ion-select placeholder="Select One" formControlName="country">
+          <ion-select-option value="USA">United Stated</ion-select-option>
+          <ion-select-option value="CO">Colombia</ion-select-option>
+          <ion-select-option value="ES">España</ion-select-option>
+          <ion-select-option value="MX">México</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <small [hidden]="!signUpForm.controls.gender.invalid">
+        {{ getMessageform("gender") }}
+      </small>
+    </div>
+
+    <div class="container-input--item">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          formControlName="email"
+          autocomplete="off"
+          Type="text"
+          placeholder="jonDoe@domain.com"
+        ></ion-input>
+      </ion-item>
+      <small *ngIf="signUpForm.controls.email.invalid">
+        {{ getMessageform("email") }}
+      </small>
+    </div>
+
+    <div class="container-input--item">
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          formControlName="password"
+          autocomplete="off"
+          Type="password"
+        ></ion-input>
+      </ion-item>
+      <small *ngIf="signUpForm.controls.password.invalid">
+        {{ getMessageform("password") }}
+      </small>
+    </div>
+
+    <div class="container-input--item">
+      <ion-checkbox color="danger"></ion-checkbox>
+      <ion-label>Terms & Conditions</ion-label>
+    </div>
+  </form>
+
+  <div>
+    <ion-button expand="block" shape="round" (click)="register()"
+      >Sign up</ion-button
+    >
+  </div>
+</ion-content>
