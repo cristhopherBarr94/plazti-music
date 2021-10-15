@@ -13,7 +13,7 @@ export class LoginGuard implements CanActivate {
     if (loginFlag) {
       return true;
     } else {
-      this.router.navigate(['user']);
+      this.router.navigate(['login']);
     }
   }
 }

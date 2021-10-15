@@ -16,12 +16,7 @@ const routes: Routes = [
         (m) => m.OnboardingPageModule
       ),
   },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
-    canActivate: [LoginGuard, OnboardingGuard],
-  },
+
   {
     path: 'login',
     loadChildren: () =>
@@ -33,6 +28,22 @@ const routes: Routes = [
       import('./user/pages/signup/signup.module').then(
         (m) => m.SignupPageModule
       ),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./menu/menu.module').then((m) => m.MenuPageModule),
+    canActivate: [LoginGuard, OnboardingGuard],
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('./menu/menu.module').then((m) => m.MenuPageModule),
+    canActivate: [LoginGuard, OnboardingGuard],
+  },
+  {
+    path: 'songs-modal',
+    loadChildren: () => import('./songs-modal/songs-modal.module').then( m => m.SongsModalPageModule)
   },
 ];
 

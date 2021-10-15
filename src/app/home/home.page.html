@@ -1,7 +1,82 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Blank </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"> este es el home </ion-content>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h1>Artists</h1>
+  <div class="ion-text-center">
+    <ion-spinner *ngIf="artists.length == 0" name="bubbles"></ion-spinner>
+  </div>
+  <ion-slides [options]="slideOpts" *ngIf="artists.length > 0">
+    <ion-slide *ngFor="let artist of artists">
+      <ion-avatar (click)="showSongs(artist)">
+        <img [src]="artist.images[0].url" appBrokenLink [alt]="artist.name" />
+        <span>{{artist.name}}</span>
+      </ion-avatar>
+    </ion-slide>
+  </ion-slides>
+
+  <h1>Albums</h1>
+  <div class="ion-text-center">
+    <ion-spinner *ngIf="albums.length == 0" name="bubbles"></ion-spinner>
+  </div>
+  <ion-slides [options]="slideOpts" *ngIf="albums.length > 0">
+    <ion-slide *ngFor="let album of albums">
+      <ion-avatar class="squared-avatar">
+        <img [src]="album.images[0].url" appBrokenLink [alt]="album.name" />
+        <span>{{album.name}}</span>
+      </ion-avatar>
+    </ion-slide>
+  </ion-slides>
+
+  <h1>Songs</h1>
+  <div class="ion-text-center">
+    <ion-spinner *ngIf="songs.length == 0" name="bubbles"></ion-spinner>
+  </div>
+  <ion-slides [options]="slideOpts" *ngIf="songs.length > 0">
+    <ion-slide *ngFor="let song of songs">
+      <ion-avatar class="squared-avatar">
+        <img [src]="song.images[0].url" appBrokenLink [alt]="song.name" />
+        <span>{{song.name}}</span>
+      </ion-avatar>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-padding">
+      <ion-col class="ion-text-start">{{newTime | timeDuration }}</ion-col>
+      <ion-col class="ion-text-end"
+        >{{currentTrack.duration | timeDuration }}</ion-col
+      >
+    </ion-row>
+  </ion-grid>
+  <ion-progress-bar [value]="progress"></ion-progress-bar>
+
+  <ion-grid>
+    <ion-row class="ion-padding">
+      <ion-col size="1">
+        <ion-icon name="heart"></ion-icon>
+      </ion-col>
+      <ion-col size="10" class="ion-text-center">
+        <ion-text> {{singleTrack.name || "Not track selected yet."}} </ion-text>
+      </ion-col>
+      <ion-col size="1">
+        <ion-icon
+          name="play"
+          (click)="play()"
+          *ngIf="!singleTrack.playing"
+        ></ion-icon>
+        <ion-icon
+          name="pause"
+          (click)="pause()"
+          *ngIf="singleTrack.playing"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

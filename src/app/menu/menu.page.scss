@@ -1,0 +1,10 @@
+ion-menu {
+  --background: rgba(196, 16, 16, 0.8);
+
+  & > ion-item {
+    color: #fff;
+  }
+}
+ion-icon {
+  margin-right: 10px;
+}

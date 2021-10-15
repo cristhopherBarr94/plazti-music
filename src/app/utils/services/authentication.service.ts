@@ -32,4 +32,9 @@ export class AuthenticationService {
       this.router.navigate(['home']);
     }
   }
+
+  logOut() {
+    this.storage.remove('isUserLoggedIn');
+    this.router.navigate(['login']);
+  }
 }
