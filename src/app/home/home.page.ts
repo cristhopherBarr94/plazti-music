@@ -45,20 +45,23 @@ export class HomePage implements OnDestroy {
     this.musicService.getNewReleases();
   }
 
-  async showSongs(artist: any) {
+  async showSongs(targetSelected: any, elType?: string) {
     const modal = await this.modalController.create({
       component: SongsModalPage,
       cssClass: 'my-custom-class',
       componentProps: {
-        artistId: artist.id,
-        artist_name: artist.name,
+        element_id: targetSelected.id,
+        element_name: targetSelected.name,
+        operator: elType,
       },
     });
 
     // process data returned by modal on close event
     modal.onDidDismiss().then((dataReturned) => {
-      this.singleTrack = dataReturned.data;
-      this.singleTrack.playing = false;
+      if (dataReturned.data) {
+        this.singleTrack = dataReturned.data;
+        this.singleTrack.playing = false;
+      }
     });
 
     return await modal.present();
@@ -66,8 +69,9 @@ export class HomePage implements OnDestroy {
 
   play() {
     // native api to play audio
-    this.currentTrack = new Audio(this.singleTrack.preview_url);
+    if (this.singleTrack.name == undefined) return;
 
+    this.currentTrack = new Audio(this.singleTrack.preview_url);
     this.currentTrack.play();
 
     this.currentTrack.addEventListener('timeupdate', () => {
@@ -79,6 +83,8 @@ export class HomePage implements OnDestroy {
   }
 
   pause() {
+    if (this.singleTrack.name == undefined) return;
+
     this.currentTrack.pause();
     this.singleTrack.playing = false;
   }

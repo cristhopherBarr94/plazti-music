@@ -26,7 +26,7 @@
   </div>
   <ion-slides [options]="slideOpts" *ngIf="albums.length > 0">
     <ion-slide *ngFor="let album of albums">
-      <ion-avatar class="squared-avatar">
+      <ion-avatar class="squared-avatar" (click)="showSongs(album,'album')">
         <img [src]="album.images[0].url" appBrokenLink [alt]="album.name" />
         <span>{{album.name}}</span>
       </ion-avatar>
@@ -63,18 +63,20 @@
         <ion-icon name="heart"></ion-icon>
       </ion-col>
       <ion-col size="10" class="ion-text-center">
-        <ion-text> {{singleTrack.name || "Not track selected yet."}} </ion-text>
+        <ion-text class="song-name" id="tranck_name">
+          {{singleTrack?.name || "Not track selected yet."}}
+        </ion-text>
       </ion-col>
-      <ion-col size="1">
+      <ion-col size="1" class="ion-text-end">
         <ion-icon
           name="play"
           (click)="play()"
-          *ngIf="!singleTrack.playing"
+          *ngIf="!singleTrack?.playing"
         ></ion-icon>
         <ion-icon
           name="pause"
           (click)="pause()"
-          *ngIf="singleTrack.playing"
+          *ngIf="singleTrack?.playing"
         ></ion-icon>
       </ion-col>
     </ion-row>

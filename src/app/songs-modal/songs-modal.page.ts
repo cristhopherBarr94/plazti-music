@@ -17,10 +17,11 @@ import { PlatziMusicService } from '../utils/services/platzi-music.service';
   styleUrls: ['./songs-modal.page.scss'],
 })
 export class SongsModalPage implements OnInit, OnDestroy {
-  @Input() artistId: string = '';
-  @Input() artist_name: string = '';
+  @Input() element_id: string = '';
+  @Input() element_name: string = '';
+  @Input() operator: string = '';
 
-  private songsByArtistSubs: Subscription;
+  private songsByElTypeSubs: Subscription;
   public songs: any[] = [];
 
   constructor(
@@ -29,11 +30,25 @@ export class SongsModalPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getSongsList(this.artistId);
+    this.getSongsList(this.element_id);
   }
 
-  getSongsList(artist: any) {
-    this.songsByArtistSubs = this.musicService.songsByArt$.subscribe(
+  getSongsList(elementInput: any) {
+    if (this.operator) {
+      this.songsByElTypeSubs = this.musicService.songsByAlbm$.subscribe(
+        (songsData) => {
+          if (songsData) {
+            this.songs = songsData;
+          } else {
+            // TODO logic for error (snackbar)
+          }
+        }
+      );
+      this.musicService.getSongsByAlbum(elementInput);
+      return;
+    }
+
+    this.songsByElTypeSubs = this.musicService.songsByArt$.subscribe(
       (songsData) => {
         if (songsData) {
           this.songs = songsData;
@@ -42,14 +57,16 @@ export class SongsModalPage implements OnInit, OnDestroy {
         }
       }
     );
-    this.musicService.getSognsByArtist(artist);
+    this.musicService.getSognsByArtist(elementInput);
   }
 
-  async selectSong(track: any) {
-    await this.modalController.dismiss(track);
+  async selectSong(track?: any) {
+    (await track)
+      ? this.modalController.dismiss(track)
+      : this.modalController.dismiss();
   }
 
   ngOnDestroy() {
-    this.songsByArtistSubs.unsubscribe();
+    this.songsByElTypeSubs.unsubscribe();
   }
 }
