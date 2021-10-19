@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center ion-padding">
+  <h1>Follow your progress!</h1>
+  <h2>Keep training , Don't Give up.</h2>
+  <agm-map
+    [latitude]="currentCenter.lat"
+    [longitude]="currentCenter.lng"
+    [zoom]="defaultZoom"
+  >
+    <agm-marker
+      iconUrl="assets/img/bicycle.png"
+      [latitude]="currentCenter.lat"
+      [longitude]="currentCenter.lng"
+    ></agm-marker>
+
+    <agm-polyline strokeColor="red">
+      <agm-polyline-point
+        *ngFor="let coords  of coordinates"
+        [latitude]="coords.lat"
+        [longitude]="coords.lng"
+      >
+      </agm-polyline-point>
+    </agm-polyline>
+  </agm-map>
+
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let song of items; index as i">
+      <ion-avatar> {{i+1}} </ion-avatar>
+      <ion-label>
+        <h2>{{song.name}}</h2>
+        <p>{{song.popularity}}</p>
+      </ion-label>
+      <div>
+        <ion-spinner *ngIf="song.playing" name="dots"></ion-spinner>
+      </div>
+      <ion-buttons slot="end">
+        <ion-button *ngIf="!song.playing" (click)="play(song)"
+          ><ion-icon name="play"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="song.playing" (click)="stop(song)"
+          ><ion-icon name="pause"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -10,14 +10,17 @@ export class PlatziMusicService {
   private _platziMusic: any[] = [];
   private _songsByArt: any[] = [];
   private _songsByAlbm: any[] = [];
+  private _songsBySearch: any[] = [];
 
   private _platziMusicSbj = new Subject<any>();
   private _songsByArtSbj = new Subject<any>();
   private _songsByAlbmSbj = new Subject<any>();
+  private _songsBySearchSbj = new Subject<any>();
 
   public musicList$ = this._platziMusicSbj.asObservable();
   public songsByArt$ = this._songsByArtSbj.asObservable();
   public songsByAlbm$ = this._songsByAlbmSbj.asObservable();
+  public songsBySearch$ = this._songsBySearchSbj.asObservable();
 
   constructor(private httpService: HttpService) {}
 
@@ -67,6 +70,22 @@ export class PlatziMusicService {
             this._songsByAlbm.push(item);
           });
           this._songsByAlbmSbj.next(this._songsByAlbm);
+        }
+      });
+  }
+
+  searchTracks(trackName: string) {
+    this.httpService
+      .get(
+        `https://platzi-music-api.herokuapp.com/search?q=${trackName}&type=track`
+      )
+      .subscribe((res: any) => {
+        if (res.status === 200) {
+          this._songsBySearch = [];
+          res.body.tracks.items.forEach((item) => {
+            this._songsBySearch.push(item);
+          });
+          this._songsBySearchSbj.next(this._songsBySearch);
         }
       });
   }

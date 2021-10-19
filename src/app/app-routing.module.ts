@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
 import { LoginGuard } from './utils/guards/login.guard';
 import { OnboardingGuard } from './utils/guards/onboarding.guard';
 
@@ -41,6 +42,11 @@ const routes: Routes = [
       import('./songs-modal/songs-modal.module').then(
         (m) => m.SongsModalPageModule
       ),
+  },
+  {
+    path: 'sports',
+    loadChildren: () =>
+      import('./sports/sports.module').then((m) => m.SportsPageModule),
   },
 ];
 
