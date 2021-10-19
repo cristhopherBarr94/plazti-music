@@ -12,19 +12,15 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item routerLink="/home">
+        <ion-item (click)="goTo('/home')">
           <ion-icon name="home-outline"></ion-icon>
           Home</ion-item
         >
-        <ion-item routerLink="/home/player">
-          <ion-icon name="musical-notes-outline"></ion-icon>
-          Music Player</ion-item
-        >
-        <ion-item routerLink="/home/sports">
+        <ion-item (click)="goTo('/home/sports')">
           <ion-icon name="bicycle-outline"></ion-icon>
           Sports</ion-item
         >
-        <ion-item routerLink="/settings">
+        <ion-item (click)="goTo('/home/settings')">
           <ion-icon name="settings-outline"></ion-icon>
           Settings</ion-item
         >

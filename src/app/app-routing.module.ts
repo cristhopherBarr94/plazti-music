@@ -36,14 +36,11 @@ const routes: Routes = [
     canActivate: [LoginGuard, OnboardingGuard],
   },
   {
-    path: 'settings',
-    loadChildren: () =>
-      import('./menu/menu.module').then((m) => m.MenuPageModule),
-    canActivate: [LoginGuard, OnboardingGuard],
-  },
-  {
     path: 'songs-modal',
-    loadChildren: () => import('./songs-modal/songs-modal.module').then( m => m.SongsModalPageModule)
+    loadChildren: () =>
+      import('./songs-modal/songs-modal.module').then(
+        (m) => m.SongsModalPageModule
+      ),
   },
 ];
 

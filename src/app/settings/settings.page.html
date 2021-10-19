@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-avatar (click)="takePhoto()">
+    <img
+      appBrokenLink
+      *ngIf="!photo"
+      [src]="imgURL "
+      alt="user profile image"
+    />
+    <img appBrokenLink *ngIf="photo" [src]="photo" alt="user profile image" />
+  </ion-avatar>
+  <h1>Cristhopher Barreto</h1>
+  <h2>cristhopher.barretosa@gmail.com</h2>
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-text-center ion-row-header">
+      <ion-col>140</ion-col>
+      <ion-col>2k</ion-col>
+      <ion-col>500</ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-text-center">
+      <ion-col>Artists</ion-col>
+      <ion-col>Followers</ion-col>
+      <ion-col>Songs</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

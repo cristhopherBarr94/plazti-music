@@ -46,6 +46,6 @@ export class OnboardingPage {
     this.isIntroViewed = true;
     this.storage.create();
     this.storage.set('isIntroViewed', true);
-    this.router.navigate(['home']);
+    this.router.navigate(['login']);
   }
 }

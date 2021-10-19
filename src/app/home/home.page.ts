@@ -15,8 +15,13 @@ export class HomePage implements OnDestroy {
   public artists = [];
   public songs = [];
   public albums = [];
-  public singleTrack: any = {};
-  public currentTrack: any = {};
+  public singleTrack: { preview_url: string; playing: boolean; name: string } =
+    {
+      preview_url: '',
+      playing: false,
+      name: '',
+    };
+  public currentTrack: HTMLAudioElement;
   public newTime: number;
   public progress: number;
 

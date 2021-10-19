@@ -14,14 +14,16 @@ const routes: Routes = [
           import('./../home/home.module').then((m) => m.HomePageModule),
       },
       {
-        path: 'player',
+        path: 'sports',
         loadChildren: () =>
           import('./../home/home.module').then((m) => m.HomePageModule),
       },
       {
-        path: 'sports',
+        path: 'settings',
         loadChildren: () =>
-          import('./../home/home.module').then((m) => m.HomePageModule),
+          import('../settings/settings.module').then(
+            (m) => m.SettingsPageModule
+          ),
       },
     ],
   },
